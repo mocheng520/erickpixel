@@ -25,7 +25,7 @@ namespace SelectionSystem.Components
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public sealed class Selectable : MonoBehaviour, ISelectable
     {
-        public static event Action<ISelectable> onDestroy;
+        internal static event Action<ISelectable> onDestroy;
 
         [SerializeField]
         private GameObject hLSelection;

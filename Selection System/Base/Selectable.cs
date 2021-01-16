@@ -18,7 +18,7 @@ namespace SelectionSystem.Base
     /// The Selectable class can act both as: 
     /// <para> - A single Component ready-to-use so your custom class can use it's functionalities. (SelectionSystem.Component) <br/>
     /// - A base class from which custom classes can Inherit from. (SelectionSystem.Base)</para>
-    /// Opposite to the component class of the Selectable, this one when it's inherited all the logic must be written
+    /// Opposite to the component class of the Selectable, this one when inherited all the logic must be written
     /// down.
     /// </summary>
     [DisallowMultipleComponent]

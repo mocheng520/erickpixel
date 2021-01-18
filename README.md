@@ -15,3 +15,6 @@ I'm still learning game development and Programming (even though I feel I've adv
 
 - Day five
   - Partially working Building Placement System. 
+
+- Day six
+  - Health System working.

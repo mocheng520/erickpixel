@@ -7,14 +7,15 @@ I'm still learning game development and Programming (even though I feel I've adv
 
 <b>Progress Status</b>
 
-- Day one -> three
+- Done
   - Selection System working.
-  
-- Day four
   - Camera Movement working.
-
-- Day five
   - Partially working Building Placement System. 
-
-- Day six
   - Health System working.
+
+- In Progress
+  - Base Unit System
+  - Unit Command Handler System
+  
+- TO DO:
+  A lot! :p

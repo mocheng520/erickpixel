@@ -1,17 +1,16 @@
-﻿using System;
+using System;
 using UnityEngine;
 using SelectionSystem.Modules;
 
 namespace SelectionSystem.Components
 {
     /// <summary>
-    /// The Selectable class can act both as: 
+    /// The Selector act as: 
     /// <para> - A single Component ready-to-use so your custom class can use it's functionalities. (SelectionSystem.Component) <br/>
-    /// - A base class from which custom classes can Inherit from. (SelectionSystem.Base)</para>
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-    public sealed class Selectable : MonoBehaviour, ISelectable
+    public sealed class Selector : MonoBehaviour, ISelectable
     {
         internal static event Action<ISelectable> onDestroy;
 

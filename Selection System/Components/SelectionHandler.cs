@@ -31,7 +31,7 @@ namespace SelectionSystem.Components
 
         private Predicate<ISelectable> _multiSelectionRule = null;
 
-        private WaitForSeconds shortDelay = new WaitForSeconds(0.1f);
+        private readonly WaitForSeconds shortDelay = new WaitForSeconds(0.1f);
         
         [NonSerialized]
         private Vector3 onClickCursorPosition;

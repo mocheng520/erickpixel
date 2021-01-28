@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace SelectionSystem.Modules.MeshGeneration
 {
@@ -34,24 +34,16 @@ namespace SelectionSystem.Modules.MeshGeneration
 
             Vector3[] verticies = new Vector3[4];
             Vector3[] meshBorderLines = new Vector3[4];
-            Vector2[] corners = MeshBoundsProcessor.GetBoundaries(initialPosition, finalPosition);
+            Vector2[] corners = MeshBounds.GetBoundaries(initialPosition, finalPosition);
 
             int i = 0;
             foreach (Vector2 corner in corners)
             {
-                Ray ray = mainCamera.ScreenPointToRay(corner);
+                Ray ray = mainCamera.ScreenPointToRay(corner); // Used to read the origin point from camera view.
 
-                if (Physics.Raycast(ray, out var hitVariable, Constants.maxRayTravelDistance, Constants._selectionBoxLayer))
-                {
-                    verticies[i] = new Vector3(hitVariable.point.x, 0, hitVariable.point.z);
-                    meshBorderLines[i] = ray.origin  - hitVariable.point;
-                    Debug.DrawLine(mainCamera.ScreenToWorldPoint(corner), hitVariable.point, Color.green, 0.2f);
-                }
-                else
-                {
-                    attachedMeshCollider.enabled = false;
-                    return false;
-                }
+                var screenPoint = new Vector3(corner.x, corner.y, mainCamera.farClipPlane);
+                verticies[i] = mainCamera.ScreenToWorldPoint(screenPoint);
+                meshBorderLines[i] = ray.origin - verticies[i];
 
                 i++;
             }

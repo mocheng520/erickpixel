@@ -68,7 +68,7 @@ namespace SelectionSystem.Components
             if (!_meshCollider)
                 _meshCollider = GetComponent<MeshCollider>();
 
-            Initializer.Run();
+            //Initializer.Run();
             Selector.onDestroy += AutoRemove;
         }
 
@@ -112,6 +112,8 @@ namespace SelectionSystem.Components
             */
 
             shiftWasPressedLastSelection = InputHelper.ShiftKeyIsPressed();
+
+            ProcessSelections();
         }
 
         private IEnumerator DisableMeshCollider() 
@@ -178,7 +180,7 @@ namespace SelectionSystem.Components
             {
                 Ray ray = camera.ScreenPointToRay(currentCursorPosition);
 
-                if (!Physics.Raycast(ray, out var hit, Constants.maxRayTravelDistance)) return;
+                if (!Physics.Raycast(ray, out var hit, camera.farClipPlane)) return;
 
                 if (!hit.collider.TryGetComponent(out ISelectable selectable)) return;
 
@@ -202,8 +204,6 @@ namespace SelectionSystem.Components
 
             if (InputHelper.LeftMouseButtonWasReleased())
                 OnLeftMouseReleased();
-
-            print(currentSelection.Count);
         }
 
         /// <summary>
@@ -215,7 +215,10 @@ namespace SelectionSystem.Components
         /// </param>
         public void DefineMultiSelectionRule(Predicate<ISelectable> condition = null)
         {
-            _multiSelectionRule = condition == null ? null : condition;
+            if (condition is null) 
+                return;
+
+            _multiSelectionRule = condition;
         }
     }
 }

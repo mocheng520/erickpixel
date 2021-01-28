@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using SelectionSystem.DesignedCollection;
@@ -10,7 +10,7 @@ namespace SelectionSystem.Components
     /// <summary>
     /// The <see cref="SelectionHandler"/> handles the major part of the entire <seealso cref="SelectionSystem">System</seealso>. <br/>
     /// In order to this to recoginize any selectable object, it's needed to implement <seealso cref="ISelectable"/> interface.
-    /// <para>The <seealso cref="SelectionSystem">System</seealso> already brings to you a ready-to-use <seealso cref="Selectable">Component</seealso> with all functionalities needed implemented. <br/>
+    /// <para>The <seealso cref="SelectionSystem">System</seealso> already brings to you a ready-to-use <seealso cref="Selector">Component</seealso> with all functionalities needed implemented. <br/>
     /// But it does not implements <seealso cref="ISelectable"/> for flexibility reason. </para>
     /// </summary>
     [DisallowMultipleComponent]
@@ -69,6 +69,7 @@ namespace SelectionSystem.Components
                 _meshCollider = GetComponent<MeshCollider>();
 
             Initializer.Run();
+            Selector.onDestroy += AutoRemove;
         }
 
         private void OnGUI()
@@ -139,7 +140,6 @@ namespace SelectionSystem.Components
             }
 
             currentSelection.Add(selectable);
-            Selectable.onDestroy += AutoRemove;
         }
 
         private void AutoRemove(ISelectable obj)

@@ -21,3 +21,28 @@
   You can attach this object in any GameObject you want to make it selectable.
   
   Note: This gameObject must have a Rigidbody and a Collider or it won't work. If you're not intended to use Physics in your project so make sure this Rigidbody is marked as Kinematic and uncheck Use Gravity.
+
+
+<b>General Tips:</b>
+  - <b>Selection Handler</b>
+  To acess the list of the selected objects you must create a Reference for the Selection Handler in another script, and acess "currentSelection" property.
+  E.g:
+<code>
+using UnityEngine;
+using SelectionSystem.Components;
+  
+  public SelectionHandler selectionHandler;
+  
+  void Start()
+  {
+    selectionHandler = GetComponent<SelectionHandler>();
+    
+    int selectionCount = selectionHandler.currentSelection.Count; // How much objects are selected at this moment
+  
+    foreach(var selected in selectionHandler.currentSelection)
+    {
+      // Do something for each object selected.
+    }
+  }
+</code>
+

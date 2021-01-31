@@ -27,22 +27,25 @@
   - <b>Selection Handler</b>
   To acess the list of the selected objects you must create a Reference for the Selection Handler in another script, and acess "currentSelection" property.
   E.g:
-<code>
-using UnityEngine;
-using SelectionSystem.Components;
+
+<code> 
+  using UnityEngine; 
+  using SelectionSystem.Components;
+  
   
   public SelectionHandler selectionHandler;
-  
+
+
   void Start()
   {
     selectionHandler = GetComponent<SelectionHandler>();
-    
+
     int selectionCount = selectionHandler.currentSelection.Count; // How much objects are selected at this moment
-  
+
     foreach(var selected in selectionHandler.currentSelection)
     {
       // Do something for each object selected.
     }
   }
-</code>
 
+</code>

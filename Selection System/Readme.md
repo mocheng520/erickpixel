@@ -12,4 +12,11 @@
   
   Once you have done it, open the "Rect Settings" property that must be shown in the Inspector. You'll see that the colors are all black, set the colors for whatever the values you feel confortable (also make sure that the alpha is not 255(100%)). The first color is the color of the inner Rectangle on the screen, the second is the color of the Border of this rectangle, and the Thickness is also related to the border.
   
-  At the end, 
+  That's pretty much it. Now your Selections are beeing processed already automatically by it's own. If you, for some reason, wants to process the selections by another way, open the SelectionHandler.cs file and remove "ProcessSelections();" from the internal Update and call it from the outside.
+  
+- The <b>Selector</b>:
+  
+  This component is the one used by the Selection Handler to recognize this object as "selectable" internally.
+  
+  You can attach this object in any GameObject you want to make it selectable.
+  Note: This gameObject must have a Rigidbody and a Collider or it won't work. If you're not intended to use Physics in your project so make sure this Rigidbody is marked as Kinematic and uncheck Use Gravity.

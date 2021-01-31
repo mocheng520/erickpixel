@@ -25,23 +25,33 @@
 
 <b>General Tips:</b>
   - <b>Selection Handler</b>
-  To acess the list of the selected objects you must create a Reference for the Selection Handler in another script, and acess "currentSelection" property.
+  To acess the list of the selected objects you must create a Reference for the Selection Handler in another script, and access "currentSelection" property.
   E.g:
 
-<code> 
-     
-      SelectionHandler selectionHandler;
+<code>     
       
-      void Start()
+      using UnityEngine;
+      using SelectionSystem.Components;
+      
+      public class Example : MonoBehaviour
       {
-        selectionHandler = GetComponent<SelectionHandler>();
-      
-        int selectionCount = selectionHandler.currentSelection.Count;
+          // Reference to the component.
+          SelectionHandler selectionHandler;
 
-        foreach(var selected in selectionHandler.currentSelection)
-        {
-          // Do something with each element.
-        }
+          void Start()
+          {
+              // Grab from the game object.
+              selectionHandler = GetComponent<SelectionHandler>();
+
+              // Total number of elements in the list (selected objects).
+              int selectionCount = selectionHandler.currentSelection.Count;
+
+              // Accessing each element in the list.
+              foreach(var selected in selectionHandler.currentSelection)
+              {
+                // Do something with each element.
+              }
+          }
       }
   
 </code>
@@ -52,14 +62,43 @@
   
   - Have sure your class has a reference to the Selector component.
   - Make your main class implements ISelectable through this component.
+  Like:
+<code>
+    
+    using UnityEngine;
+    using SelectionSystem;
+    using SelectionSystem.Components;
+    
+    public class Example2 : MonoBehaviour, ISelectable
+    {
+        [SerializeField]
+        private Selector selector;
+
+        void Start()
+        {
+            selector = GetComponent<Selector>(); // Or .. just drag-and-drop from the inspector.
+        }
+
+        public void Select()
+        {
+            ((ISelectable)selector).Select();
+        }
+
+        public void Deselect()
+        {
+            ((ISelectable)selector).Deselect;
+        }
+    }
+  
+</code>
   
   This way, when you're accessing the selection list you can:
 
 <code>
   
-    foreach(<yourclass> selected in selectionHandler.currentSelection)
+    foreach(Example2 selected in selectionHandler.currentSelection)
     {
-      	// Now the elements came as the class you wanted. 
+      	// Now the elements came as the class you wanted! 
     }
   
-</code
+</code>

@@ -28,16 +28,38 @@
   To acess the list of the selected objects you must create a Reference for the Selection Handler in another script, and acess "currentSelection" property.
   E.g:
 
-  <code> 
-  private SelectionHandler selectionHandler; <br/>
-  
-  private void Start()
-  {
-      selectionHandler = GetComponent(typeof(SelectionHandler));   
-      int selectionCount = selectionHandler.currentSelection.Count;
-      foreach(var selected in selectionHandler.currentSelection)
+<code> 
+     
+      SelectionHandler selectionHandler;
+      
+      void Start()
       {
-        // Do something with each element.
-      }  
-  }  
-  </code>
+        selectionHandler = GetComponent<SelectionHandler>();
+      
+        int selectionCount = selectionHandler.currentSelection.Count;
+
+        foreach(var selected in selectionHandler.currentSelection)
+        {
+          // Do something with each element.
+        }
+      }
+  
+</code>
+
+  Just keep in mind that: 
+  
+  The elements in the list are referenced by the Interface <code>ISelectable</code>. A small tip to work with specific Type is:
+  
+  - Have sure your class has a reference to the Selector component.
+  - Make your main class implements ISelectable through this component.
+  
+  This way, when you're accessing the selection list you can:
+
+<code>
+  
+    foreach(<yourclass> selected in selectionHandler.currentSelection)
+    {
+      	// Now the elements came as the class you wanted. 
+    }
+  
+</code

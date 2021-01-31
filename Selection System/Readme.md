@@ -98,7 +98,7 @@
   
     foreach(Example2 selected in selectionHandler.currentSelection)
     {
-      	// Now the elements came as the class you wanted! 
+        // Now you're accessing only the elements of the Type that you wanted! 
     }
   
 </code>

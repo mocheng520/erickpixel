@@ -19,4 +19,5 @@
   This component is the one used by the Selection Handler to recognize this object as "selectable" internally.
   
   You can attach this object in any GameObject you want to make it selectable.
+  
   Note: This gameObject must have a Rigidbody and a Collider or it won't work. If you're not intended to use Physics in your project so make sure this Rigidbody is marked as Kinematic and uncheck Use Gravity.

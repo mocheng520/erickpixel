@@ -11,8 +11,8 @@ namespace SelectionSystem
     [RequireComponent(typeof(ParticleSystem))]
     public sealed class SelectionHighlight : MonoBehaviour
     {
-        public const float minSize = 2f;
-        public const float maxSize = 20f;
+        public const float MIN_SIZE = 2f;
+        public const float MAX_SIZE = 20f;
 
         public static readonly Color defaultColor = Color.white;
         public static readonly Color ownerColor = Color.green;
@@ -20,12 +20,11 @@ namespace SelectionSystem
         public static readonly Color hostileColor = Color.red;
 
         [SerializeField]
-        [Range(minSize, maxSize)]
+        [Range(MIN_SIZE, MAX_SIZE)]
         private float highlightSize = 4f;
 
         private ParticleSystem _particles;
 
-        /// <inheritdoc/>
         public Color color
         {
             get
@@ -33,7 +32,7 @@ namespace SelectionSystem
                 return _particles.main.startColor.color;
             }
         }
-        /// <inheritdoc/>
+
         public float size
         {
             get
@@ -55,27 +54,24 @@ namespace SelectionSystem
 
             particleMain.startSize = highlightSize;
 
-            if (particleMain.startSize.constant < minSize)
-                particleMain.startSize = minSize;
-            else if (particleMain.startSize.constant > maxSize)
-                particleMain.startSize = maxSize;
+            if (particleMain.startSize.constant < MIN_SIZE)
+                particleMain.startSize = MIN_SIZE;
+            else if (particleMain.startSize.constant > MAX_SIZE)
+                particleMain.startSize = MAX_SIZE;
         }
 
-        /// <inheritdoc/>
         public void Activate()
         {
             gameObject.SetActive(true);
             _particles.Play();
         }
 
-        /// <inheritdoc/>
         public void Deactivate()
         {
             gameObject.SetActive(false);
             _particles.Stop();
         }
 
-        /// <inheritdoc/>
         public void SetHighlightColor(Color color)
         {
             var main = _particles.main;

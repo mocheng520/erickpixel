@@ -41,7 +41,7 @@ namespace SelectionSystem
             }
         }
 
-        private void OnValidate()
+        private void Awake()
         {
             if (!_particles)
             {

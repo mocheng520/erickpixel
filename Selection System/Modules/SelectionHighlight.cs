@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace SelectionSystem
 {
@@ -6,9 +6,10 @@ namespace SelectionSystem
     /// The <see cref="SelectionHighlight"/> is a Component to handle the visual part of the Selection System. <br/> 
     /// It requires a <seealso cref="ParticleSystem"/> Component. 
     /// <para> This class cannot be inherited. </para>
+    /// <para> Make sure this game object is active. </para>
     /// </summary>
     [RequireComponent(typeof(ParticleSystem))]
-    public sealed class SelectionHighlight : MonoBehaviour, ISelectionHighlight
+    public sealed class SelectionHighlight : MonoBehaviour
     {
         public const float minSize = 2f;
         public const float maxSize = 20f;
@@ -43,11 +44,7 @@ namespace SelectionSystem
 
         private void Awake()
         {
-            if (!_particles)
-            {
-                if (TryGetComponent<ParticleSystem>(out var particles))
-                    _particles = particles;
-            }
+            _particles = GetComponent<ParticleSystem>();
 
             ValidateParticleSize();
         }

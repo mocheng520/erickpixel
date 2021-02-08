@@ -7,15 +7,4 @@ I'm still learning game development and Programming (even though I feel I've adv
 
 <b>Progress Status</b>
 
-- Done
-  - Selection System.
-  - Camera Movement.
-  - Building Placement System. 
-  - Health System.
-
-- In Progress
-  - Base Unit System.
-  - Unit Command Handler System.
-  
-- TO DO:
-  A lot! :p
+You can check the progress status by looking at the Directories. I'll be posting all the systems and components that I have already made. Most of it is a work-in-progress. I'll post a sample project once I have one finished.
